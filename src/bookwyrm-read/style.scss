@@ -1,0 +1,47 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+
+.bookwrym-editor-notice {
+	background-color: var(--wp--preset--color--vivid-cyan-blue);
+	color: #fff;
+	font-size: 75%;
+	padding: 15px 25px;
+	text-align: center;
+}
+
+.bookwyrm-book-cover {
+	background-color: #eee;
+	border: 1px solid #ccc; 
+}
+
+.bookwyrm-book-cover-editor {
+	height: 225px;
+	width: 150px;
+}
+
+.bookwyrm-book-title {
+	line-height: 1.2;
+}
+
+.bookwyrm-book-title cite {
+	font-weight: bold;
+	text-transform: capitalize;
+}
+
+@media screen and (min-width: 451px) {
+	.read--list {
+		display: grid;
+		gap: 5vw;
+		grid-template-columns: 1fr 1fr;
+	}
+ }
+
+@media screen and (min-width: 769px) {
+	.read--list {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}
