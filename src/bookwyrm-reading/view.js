@@ -21,34 +21,28 @@
  */
  
 /* eslint-disable no-console */
-console.log("Hello World! (from create-block-bookwyrm-reading block)");
 /* eslint-enable no-console */
+
+import { 
+	createBookDiv,
+	getBookCover,
+	renderError,
+	trimProtocolAndTrailingSlash
+} from "../inc/shared";
 
 (function () {
 
-	const renderError = () => {
-		const newError = document.createElement('p');
-  		newError.textContent = '⚠️ Sorry, there has been an error fetching the feed.';
-		newError.style.fontWeight = 'bold';
-  		const readListDiv = document.querySelector( 'div.read--list' );
-		document.querySelector( 'div.read--list' ).style.display = 'block';
-  		readListDiv.appendChild( newError );
-	}
-
-	const bookwyrmCcontainerElement = document.querySelector( '.wp-block-bookwyrm-blocks-bookwyrm-read-block')
-	let BOOKWYRM_USER = bookwyrmCcontainerElement.getAttribute('data-user');
-	let BOOKWYRM_INSTANCE = trimProtocolAndTrailingSlash(bookwyrmCcontainerElement.getAttribute( 'data-instance' ));
+	const bookwyrmContainerElement = document.querySelector( '.wp-block-bookwyrm-blocks-bookwyrm-read-block')
+	let BOOKWYRM_USER = bookwyrmContainerElement.getAttribute('data-user');
+	let BOOKWYRM_INSTANCE = trimProtocolAndTrailingSlash(bookwyrmContainerElement.getAttribute( 'data-instance' ));
 
 	if ( ( !BOOKWYRM_USER || BOOKWYRM_USER == '' || BOOKWYRM_USER == null ) || ( !BOOKWYRM_INSTANCE || BOOKWYRM_INSTANCE == '' || BOOKWYRM_INSTANCE == null ) ) {
-		renderError();
+		renderError( 'div.reading--list' );
 		return;	
 	}
 
 	let readingUrl = `https://corsproxy.io/?https%3A%2F%2F${BOOKWYRM_INSTANCE}%2Fuser%2F${BOOKWYRM_USER}%2Fshelf%2Freading.json%3Fpage%3D1`;
 
-	function trimProtocolAndTrailingSlash ( url ) {
-		return url.replace( /(http(s)?:\/\/)|(\/+$)/g, '').replace(/\/+/g, '/');
-	}
 
 	fetch(readingUrl)
 		.then(res => res.json())
@@ -65,17 +59,10 @@ console.log("Hello World! (from create-block-bookwyrm-reading block)");
 		let readingHolder = document.querySelector('.reading--list');
 		readingHolder.appendChild(currentBook);
 	}
-
-	const createBookDiv = () => {
-		let newElement = document.createElement('div');
-		return newElement;
-	}
-
-	const getBookCover = ( isbn ) => {
-		/* get covers from OpenLibrary as they are more standardized 
-			Format: https://covers.openlibrary.org/b/isbn/9780385533225-S.jpg
-		*/
-		return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
+	
+	const renderReadingAuthor = ( author ) => {
+		let authorByLine = `by ${author}`
+		return authorByLine;
 	}
 
 	const getBookAuthorReading = async (bookAuthorNumber ) => {
@@ -86,12 +73,6 @@ console.log("Hello World! (from create-block-bookwyrm-reading block)");
 				return renderReadingAuthor(out.name);
 			})
 		.catch(err => { throw err });
-	}
-	
-	
-	const renderReadingAuthor = ( author ) => {
-		let authorByLine = `by ${author}`
-		return authorByLine;
 	}
 
 })();

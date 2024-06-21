@@ -7,8 +7,29 @@
  *
  * Replace them with your own styles or remove the file completely.
  */
-.wp-block-create-block-bookwyrm-reading {
-  background-color: #21759b;
-  color: #fff;
-  padding: 2px;
+.bookwyrm-book-cover {
+  background-color: #eee;
+  border: 1px solid #ccc;
+}
+
+.bookwyrm-book-title {
+  line-height: 1.2;
+}
+
+.bookwyrm-book-title cite {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+@media screen and (min-width: 451px) {
+  .read--list, .reading-list {
+    display: grid;
+    gap: 5vw;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 769px) {
+  .read--list, .reading-list {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

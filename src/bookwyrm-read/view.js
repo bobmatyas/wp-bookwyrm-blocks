@@ -26,31 +26,25 @@
 
 /* Default config */
 
-(function () {
+import { 
+	createBookDiv,
+	getBookCover,
+	renderError,
+	trimProtocolAndTrailingSlash
+} from "../inc/shared";
 
-	const renderError = () => {
-		const newError = document.createElement('p');
-  		newError.textContent = '⚠️ Sorry, there has been an error fetching the feed.';
-		newError.style.fontWeight = 'bold';
-  		const readListDiv = document.querySelector( 'div.read--list' );
-		document.querySelector( 'div.read--list' ).style.display = 'block';
-  		readListDiv.appendChild( newError );
-	}
+(function () {
 
 	const bookwyrmCcontainerElement = document.querySelector( '.wp-block-bookwyrm-blocks-bookwyrm-read-block')
 	let BOOKWYRM_USER = bookwyrmCcontainerElement.getAttribute('data-user');
 	let BOOKWYRM_INSTANCE = trimProtocolAndTrailingSlash(bookwyrmCcontainerElement.getAttribute( 'data-instance' ));
 
 	if ( ( !BOOKWYRM_USER || BOOKWYRM_USER == '' || BOOKWYRM_USER == null ) || ( !BOOKWYRM_INSTANCE || BOOKWYRM_INSTANCE == '' || BOOKWYRM_INSTANCE == null ) ) {
-		renderError();
+		renderError( 'div.read--list');
 		return;	
 	}
 
 	let readUrl = `https://corsproxy.io/?https%3A%2F%2F${BOOKWYRM_INSTANCE}%2Fuser%2F${BOOKWYRM_USER}%2Fshelf%2Fread.json?page=1`;
-
-	function trimProtocolAndTrailingSlash ( url ) {
-		return url.replace( /(http(s)?:\/\/)|(\/+$)/g, '').replace(/\/+/g, '/');
-	}
 
 	fetch(readUrl)
 		.then( res => res.json() )
@@ -58,7 +52,7 @@
 			out.orderedItems.forEach( renderReadBook )
 		})
 		.catch( err => { 
-			renderError();
+			renderError( 'div.read--list');
 			return;
 		});
 
@@ -83,31 +77,14 @@
 		readingHolder.appendChild( currentBook );
 	}
 
-	const createBookDiv = () => {
-		let newElement = document.createElement('div');
-		return newElement;
-	}
-
-	const getBookCover = ( isbn ) => {
-		/* get covers from OpenLibrary as they are more standardized 
-			Format: https://covers.openlibrary.org/b/isbn/9780385533225-S.jpg
-		*/
-		return `https://covers.openlibrary.org/b/isbn/${isbn}-L.jpg`;
-	}
-
 	const getBookAuthorRead = ( bookName ) => {
 		if (bookName === '')
 			return ``
 		else {
-			let authorName = charactersBeforeColon = bookName.match(/^[^:]+/)[0];
+			let authorName = bookName.match(/^[^:]+/)[0];
 			let authorByline = `by ${authorName}`;
 			return authorByline;
 		}
-	}
-
-	const renderReadingAuthor = ( author ) => {
-		let authorByLine = `by ${author}`
-		return authorByLine;
 	}
 
 })();
