@@ -18,7 +18,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editor.scss */ "./src/bookwyrm-reading/editor.scss");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./editor.scss */ "./src/bookwyrm-reading/editor.scss");
 
 /**
  * Retrieves the translation of text.
@@ -33,6 +35,7 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-block-editor/#useblockprops
  */
+
 
 
 /**
@@ -51,10 +54,55 @@ __webpack_require__.r(__webpack_exports__);
  *
  * @return {Element} Element to render.
  */
-function Edit() {
-  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
-    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)()
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bookwyrm Reading – hello from the editor!', 'bookwyrm-reading'));
+function Edit({
+  attributes,
+  setAttributes
+}) {
+  const {
+    bookwyrmUserName,
+    bookwyrmInstance
+  } = attributes;
+  return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Settings', 'bookwyrm-reading-block')
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bookwyrm Username', 'bookwyrm-reading-block'),
+    value: bookwyrmUserName,
+    onChange: value => setAttributes({
+      bookwyrmUserName: value
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)('Bookwyrm Instance', 'bookwyrm-reading-block'),
+    value: bookwyrmInstance,
+    onChange: value => setAttributes({
+      bookwyrmInstance: value
+    })
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
+    "data-user": attributes.bookwyrmUserName,
+    "data-instance": attributes.bookwyrmInstance
+  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(bookwyrmUserName, 'bookwyrm-reading-block'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(bookwyrmInstance, 'bookwyrm-reading-block'), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Read"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    className: "bookwrym-editor-notice"
+  }, "Displaying books being read by ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, attributes.bookwyrmUserName), " on ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, attributes.bookwyrmInstance), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "This screen previews the live view. This notice isn't shown on your site's frontend."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    className: "reading--list"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "book"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "bookwyrm-book-cover bookwyrm-book-cover-editor"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    class: "bookwyrm-book-title"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("cite", null, "Test Book Title"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "by Example Author")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "book"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "bookwyrm-book-cover bookwyrm-book-cover-editor"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    class: "bookwyrm-book-title"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("cite", null, "Test Book Title"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "by Example Author")), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "book"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+    class: "bookwyrm-book-cover bookwyrm-book-cover-editor"
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+    class: "bookwyrm-book-title"
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("cite", null, "Test Book Title"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "by Example Author")))));
 }
 
 /***/ }),
@@ -207,6 +255,16 @@ module.exports = window["wp"]["blocks"];
 
 /***/ }),
 
+/***/ "@wordpress/components":
+/*!************************************!*\
+  !*** external ["wp","components"] ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = window["wp"]["components"];
+
+/***/ }),
+
 /***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
@@ -223,7 +281,7 @@ module.exports = window["wp"]["i18n"];
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bookwyrm-blocks/bookwyrm-reading-block","version":"0.1.0","title":"Bookwyrm - Reading","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"supports":{"html":false},"textdomain":"bookwyrm-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","viewScript":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"bookwyrm-blocks/bookwyrm-reading-block","version":"0.1.0","title":"Bookwyrm - Reading","category":"widgets","icon":"smiley","description":"Example block scaffolded with Create Block tool.","example":{},"attributes":{"bookwyrmUserName":{"type":"string"},"bookwyrmInstance":{"type":"string"}},"supports":{"html":false},"textdomain":"bookwyrm-blocks","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php","viewScript":"file:./view.js"}');
 
 /***/ })
 
