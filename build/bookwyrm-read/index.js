@@ -81,7 +81,7 @@ function Edit({
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps)(),
     "data-user": attributes.bookwyrmUserName,
     "data-instance": attributes.bookwyrmInstance
-  }, (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(bookwyrmUserName, 'bookwyrm-read-block'), (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__.__)(bookwyrmInstance, 'bookwyrm-read-block'), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Read"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h2", null, "Read"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", {
     className: "bookwrym-editor-notice"
   }, "Displaying books read by ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, attributes.bookwyrmUserName), " on ", (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("b", null, attributes.bookwyrmInstance), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("br", null), "This screen previews the live view. This notice isn't shown on your site's frontend."), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     className: "read--list"

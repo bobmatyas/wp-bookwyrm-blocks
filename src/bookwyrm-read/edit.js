@@ -62,14 +62,6 @@ export default function Edit( { attributes, setAttributes } )  {
                 </PanelBody>
             </InspectorControls>
 			<div { ...useBlockProps() } data-user={ attributes.bookwyrmUserName } data-instance={ attributes.bookwyrmInstance } >
-				{ __(
-					bookwyrmUserName,
-					'bookwyrm-read-block'
-				) } 
-				{ __(
-					bookwyrmInstance,
-					'bookwyrm-read-block'
-				) } 
 
 				<h2>Read</h2>
 				<p className="bookwrym-editor-notice">Displaying books read by <b>{ attributes.bookwyrmUserName }</b> on <b>{ attributes.bookwyrmInstance }</b><br/>This screen previews the live view. This notice isn't shown on your site's frontend.</p>
