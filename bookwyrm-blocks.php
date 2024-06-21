@@ -1,11 +1,12 @@
 <?php
 /**
  * Plugin Name:       Bookwyrm Blocks
- * Description:       Example block scaffolded with Create Block tool.
- * Requires at least: 6.1
- * Requires PHP:      7.0
- * Version:           0.1.0
- * Author:            The WordPress Contributors
+ * Description:       Blocks for Bookwyrm.social.
+ * Requires at least: 6.0
+ * Requires PHP:      7.4
+ * Version:           1.0.0
+ * Author URI:	      https://www.bobmatyas.com
+ * Author:            Bob Matyas
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       bookwyrm-blocks

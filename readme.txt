@@ -1,12 +1,13 @@
 === Bookwyrm Blocks ===
-Contributors:      The WordPress Contributors
-Tags:              block
-Tested up to:      6.
-Stable tag:        0.1.0
+Contributors: lastsplash
+Tags: blocks, books, bookwyrm
+Requires at least: 6.0
+Tested up to: 6.5.3
+Requires PHP: 7.4
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Example block scaffolded with Create Block tool.
+Adds two blocks for pulling currently reading and past read books from Bookwyrm.social
 
 == Description ==
 
@@ -45,11 +46,6 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
-= 0.1.0 =
-* Release
+= 1.0.0
 
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+- Initial release
