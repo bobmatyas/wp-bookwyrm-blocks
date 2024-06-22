@@ -32,7 +32,7 @@ import {
 
 (function () {
 
-	const bookwyrmContainerElement = document.querySelector( '.wp-block-bookwyrm-blocks-bookwyrm-read-block')
+	const bookwyrmContainerElement = document.querySelector( '.wp-block-bookwyrm-blocks-bookwyrm-reading-block')
 	let BOOKWYRM_USER = bookwyrmContainerElement.getAttribute('data-user');
 	let BOOKWYRM_INSTANCE = trimProtocolAndTrailingSlash(bookwyrmContainerElement.getAttribute( 'data-instance' ));
 
