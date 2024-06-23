@@ -3,10 +3,10 @@
   "apiVersion": 3,
   "name": "bookwyrm-blocks/bookwyrm-read-block",
   "version": "0.1.0",
-  "title": "Bookwyrm - Read",
+  "title": "Bookwyrm - Recently Read",
   "category": "widgets",
   "icon": "book",
-  "description": "Adds currently reading books from a Bookwyrm.social instance.",
+  "description": "Lists recently read books from a Bookwyrm.social instance.",
   "example": {},
   "attributes": {
     "bookwyrmUserName": {
