@@ -21,3 +21,10 @@ export function renderError ( container ) {
 export function trimProtocolAndTrailingSlash ( url ) {
 	return url.replace( /(http(s)?:\/\/)|(\/+$)/g, '').replace(/\/+/g, '/');
 }
+
+export function configurePluginMessage ( configured ) {
+	if ( configured === 'no') 
+		return `⚠️ Configure your Bookwyrm username and instance in the block settings.`
+	else 
+		return `This message only appears in the editor.`
+}

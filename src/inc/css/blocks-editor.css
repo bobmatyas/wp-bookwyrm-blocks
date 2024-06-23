@@ -1,9 +1,18 @@
-.bookwrym-editor-notice {
-	background-color: var(--wp--preset--color--vivid-cyan-blue);
+.bookwyrm-editor-notice {
 	color: #fff;
 	font-size: 75%;
+	font-weight: bold;
 	padding: 15px 25px;
 	text-align: center;
+	margin-bottom: 15vh;
+}
+
+.bookwyrm-editor-notice-red {
+	background-color: red;
+}
+
+.bookwyrm-editor-notice-green {
+	background-color: green;
 }
 
 .bookwyrm-book-cover-editor {

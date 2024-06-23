@@ -4,6 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
+import { configurePluginMessage } from '../inc/shared';
 
 /**
  * React hook that is used to mark the block wrapper element.
@@ -61,10 +62,11 @@ export default function Edit( { attributes, setAttributes } )  {
                 </PanelBody>
             </InspectorControls>
 			<div { ...useBlockProps() } data-user={ attributes.bookwyrmUserName } data-instance={ attributes.bookwyrmInstance } >
+					<h2>Reading</h2>
+					<div className="configuration--message"> { (attributes.bookwyrmUserName == '' || attributes.bookwyrmInstance == '' ) ? <p className="bookwyrm-editor-notice bookwyrm-editor-notice-red">{ configurePluginMessage( 'no' ) }</p> : <p className="bookwyrm-editor-notice bookwyrm-editor-notice-green">Displaying recently read books from <i>{attributes.bookwyrmUserName}</i> at <u>{attributes.bookwyrmInstance}</u><br/>{configurePluginMessage( 'yes') }</p> }
+					</div>
 
-				<h2>Reading</h2>
-				<p className="bookwrym-editor-notice">Displaying books being read by <b>{ attributes.bookwyrmUserName }</b> on <b>{ attributes.bookwyrmInstance }</b><br/>This screen previews the live view. This notice isn't shown on your site's frontend.</p>
-				<div className="reading--list">
+					<div className="reading--list">
 					<div class="book">
 						<div class="bookwyrm-book-cover bookwyrm-book-cover-editor" />
 						<p class="bookwyrm-book-title">

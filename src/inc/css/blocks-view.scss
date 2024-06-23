@@ -13,7 +13,7 @@
 }
 
 @media screen and (min-width: 451px) {
-	.read--list, .reading-list {
+	.read--list, .reading--list {
 		display: grid;
 		gap: 5vw;
 		grid-template-columns: 1fr 1fr;
@@ -21,7 +21,7 @@
  }
 
 @media screen and (min-width: 769px) {
-	.read--list, .reading-list {
+	.read--list, .reading--list {
 		grid-template-columns: 1fr 1fr 1fr;
 	}
 }

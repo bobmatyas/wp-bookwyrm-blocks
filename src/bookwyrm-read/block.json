@@ -6,7 +6,7 @@
 	"title": "Bookwyrm - Read",
 	"category": "widgets",
 	"icon": "book",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Adds currently reading books from a Bookwyrm.social instance.",
 	"example": {},
 	"attributes": {
 		"bookwyrmUserName": {
