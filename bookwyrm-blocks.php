@@ -5,7 +5,7 @@
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Version:           1.0.0
- * Author URI:	      https://www.bobmatyas.com
+ * Author URI:        https://www.bobmatyas.com
  * Author:            Bob Matyas
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -25,8 +25,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function create_block_bookwyrm_block_blocks_init() {
+function wsd_create_block_bookwyrm_block_blocks_init() {
 	register_block_type( __DIR__ . '/build/bookwyrm-read' );
 	register_block_type( __DIR__ . '/build/bookwyrm-reading' );
 }
-add_action( 'init', 'create_block_bookwyrm_block_blocks_init' );
+add_action( 'init', 'wsd_create_block_bookwyrm_block_blocks_init' );
