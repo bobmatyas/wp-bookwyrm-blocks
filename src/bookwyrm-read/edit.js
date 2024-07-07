@@ -66,7 +66,6 @@ export default function Edit( { attributes, setAttributes } )  {
             </InspectorControls>
 			<div { ...useBlockProps() } data-user={ attributes.bookwyrmUserName } data-instance={ attributes.bookwyrmInstance } >
 
-				<h2>Read</h2>
 				<div className="configuration--message"> { (attributes.bookwyrmUserName == '' || attributes.bookwyrmInstance == '' ) ? <p className="bookwyrm-editor-notice bookwyrm-editor-notice-red">{ configurePluginMessage( 'no' ) }</p> : <p className="bookwyrm-editor-notice bookwyrm-editor-notice-green">Displaying recently read books from <i>{attributes.bookwyrmUserName}</i> at <u>{attributes.bookwyrmInstance}</u><br/>{configurePluginMessage( 'yes') }</p> }
 				</div>
 				<div className="read--list">

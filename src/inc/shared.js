@@ -24,7 +24,7 @@ export function trimProtocolAndTrailingSlash ( url ) {
 
 export function configurePluginMessage ( configured ) {
 	if ( configured === 'no') 
-		return `⚠️ Configure your Bookwyrm username and instance in the block settings.`
+		return `⚠️ Configure your BookWyrm username and instance in the block settings.`
 	else 
 		return `This message only appears in the editor.`
 }

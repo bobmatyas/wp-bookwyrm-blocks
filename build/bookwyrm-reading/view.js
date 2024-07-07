@@ -38,7 +38,7 @@ function trimProtocolAndTrailingSlash(url) {
   return url.replace(/(http(s)?:\/\/)|(\/+$)/g, '').replace(/\/+/g, '/');
 }
 function configurePluginMessage(configured) {
-  if (configured === 'no') return `⚠️ Configure your Bookwyrm username and instance in the block settings.`;else return `This message only appears in the editor.`;
+  if (configured === 'no') return `⚠️ Configure your BookWyrm username and instance in the block settings.`;else return `This message only appears in the editor.`;
 }
 
 /***/ })
