@@ -3,10 +3,10 @@
   "apiVersion": 3,
   "name": "bookwyrm-blocks/bookwyrm-reading-block",
   "version": "0.1.0",
-  "title": "Bookwyrm - Currently Reading",
+  "title": "BookWyrm - Currently Reading",
   "category": "widgets",
   "icon": "book",
-  "description": "Lists currently reading books from a Bookwyrm.social instance.",
+  "description": "Lists currently reading books from a BookWyrm instance.",
   "example": {},
   "attributes": {
     "bookwyrmUserName": {
