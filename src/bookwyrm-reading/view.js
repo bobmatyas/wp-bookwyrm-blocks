@@ -66,7 +66,7 @@ import {
 	}
 
 	const getBookAuthorReading = async (bookAuthorNumber ) => {
-		let authorUrl = `https://corsproxy.io/?${bookAuthorNumber}.json`
+		let authorUrl = `https://corsproxy.io/?url=${bookAuthorNumber}.json`
 		return fetch( authorUrl )
 			.then(res => res.json())
 			.then(out => {
