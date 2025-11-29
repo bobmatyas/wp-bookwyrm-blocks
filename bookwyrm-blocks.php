@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       BookWyrm Blocks
  * Description:       Add blocks for pulling data from BookWyrm instances.
- * Requires at least: 6.0
+ * Requires at least: 6.5
  * Requires PHP:      7.4
  * Version:           1.0.0
  * Author URI:        https://www.bobmatyas.com
