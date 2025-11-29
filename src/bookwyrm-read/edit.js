@@ -51,6 +51,8 @@ export default function Edit( { attributes, setAttributes } )  {
                         onChange={ ( value ) =>
                             setAttributes( { bookwyrmUserName: value } )
                         }
+                        __next40pxDefaultSize={ true }
+                        __nextHasNoMarginBottom={ true }
                     />
 					<TextControl
                         label={ __(
@@ -61,6 +63,8 @@ export default function Edit( { attributes, setAttributes } )  {
                         onChange={ ( value ) =>
                             setAttributes( { bookwyrmInstance: value } )
                         }
+                        __next40pxDefaultSize={ true }
+                        __nextHasNoMarginBottom={ true }
                     />
                 </PanelBody>
             </InspectorControls>
