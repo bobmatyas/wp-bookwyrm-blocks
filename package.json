@@ -1,8 +1,8 @@
 {
 	"name": "bookwyrm-block",
-	"version": "0.1.0",
-	"description": "Example block scaffolded with Create Block tool.",
-	"author": "The WordPress Contributors",
+	"version": "1.0.1",
+	"description": "Blocks for pulling data from BookWyrm instances.",
+	"author": "Bob Matyas",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"scripts": {

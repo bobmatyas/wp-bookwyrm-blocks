@@ -26,8 +26,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-function wsd_create_block_bookwyrm_block_blocks_init() {
+function bfb_blocks_init() {
 	register_block_type( __DIR__ . '/build/bookwyrm-read' );
 	register_block_type( __DIR__ . '/build/bookwyrm-reading' );
 }
-add_action( 'init', 'wsd_create_block_bookwyrm_block_blocks_init' );
+add_action( 'init', 'bfb_blocks_init' );

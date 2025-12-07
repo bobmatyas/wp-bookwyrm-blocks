@@ -26,5 +26,5 @@ export function configurePluginMessage ( configured ) {
 	if ( configured === 'no') 
 		return `⚠️ Configure your BookWyrm username and instance in the block settings.`
 	else 
-		return `This message only appears in the editor.`
+		return `This message only appears in the editor. The block will display your books on the front-end of your site.`
 }

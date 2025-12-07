@@ -5,5 +5,5 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-@import "../inc/css/blocks-view";
-@import "../inc/css/blocks-editor"
+@use "../inc/css/blocks-view" as *;
+@use "../inc/css/blocks-editor.css" as *;

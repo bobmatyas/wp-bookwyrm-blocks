@@ -14,6 +14,18 @@ Adds two blocks for pulling currently reading and past read books from BookWyrm
 
 This plugin adds two blocks to pull data from BookWyrm and to display it on your WordPress site. It has a block for recently read and currently reading books.
 
+=== External Sources ===
+
+This plugin makes API calls to the user-configued [BookWyrm](https://joinbookwyrm.com/) instance. It sends the user-configured username to:
+
+- Retrieve a list of recently read or currently reading books
+
+It relies on public endpoints and only displays already public information. 
+
+Each BookWyrm instance has configures its own privacy policy based on [the BookWyrm software's privacy controls](https://docs.joinbookwyrm.com/privacy-controls.html). This is [the Privacy Policy for the BookWyrm.social instance](https://bookwyrm.social/privacy).
+
+To display book covers, the plugin calls [the OpenLibrary.org API](https://openlibrary.org/developers/api). The only data sent to OpenLibrary is an ISBN. No user information is sent. As a project of Archive.org, OpenLibrary.org's API is governed by the Archive.org [Terms of Service and Privacy Policy](https://archive.org/about/terms).
+
 == Installation ==
 
 1. Upload the plugin files to the `/wp-content/plugins/bookwyrm-block` directory, or install the plugin through the WordPress plugins screen directly.
