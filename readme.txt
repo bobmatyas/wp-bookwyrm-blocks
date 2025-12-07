@@ -12,7 +12,10 @@ Adds two blocks for pulling currently reading and past read books from BookWyrm
 
 == Description ==
 
-This plugin adds two blocks to pull data from BookWyrm and to display it on your WordPress site. It has a block for recently read and currently reading books.
+This plugin adds two blocks to pull data from BookWyrm and to display it on your WordPress site:
+
+- Recently Read books
+- Currently Reading books
 
 === External Sources ===
 
@@ -22,13 +25,13 @@ This plugin makes API calls to the user-configued [BookWyrm](https://joinbookwyr
 
 It relies on public endpoints and only displays already public information. 
 
-Each BookWyrm instance has configures its own privacy policy based on [the BookWyrm software's privacy controls](https://docs.joinbookwyrm.com/privacy-controls.html). This is [the Privacy Policy for the BookWyrm.social instance](https://bookwyrm.social/privacy).
+Each BookWyrm instance configures its own privacy policy based on [the BookWyrm software's privacy controls](https://docs.joinbookwyrm.com/privacy-controls.html). This is [the Privacy Policy for the BookWyrm.social instance](https://bookwyrm.social/privacy).
 
 To display book covers, the plugin calls [the OpenLibrary.org API](https://openlibrary.org/developers/api). The only data sent to OpenLibrary is an ISBN. No user information is sent. As a project of Archive.org, OpenLibrary.org's API is governed by the Archive.org [Terms of Service and Privacy Policy](https://archive.org/about/terms).
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/bookwyrm-block` directory, or install the plugin through the WordPress plugins screen directly.
+1. Upload the plugin files to the `/wp-content/plugins/blocks-for-bookwyrm` directory, or install the plugin through the WordPress plugins screen directly.
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 
@@ -47,6 +50,10 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 1.0.1 - 12/07/25 =
+- Fix linting issues
+- Switch to PHP-based API calls
 
 = 1.0.0
 - Initial release

@@ -8,16 +8,17 @@
  */
 
 // Ensure attributes is set.
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- $attributes is provided by WordPress Gutenberg.
 if ( ! isset( $attributes ) || ! is_array( $attributes ) ) {
 	$attributes = array();
 }
 
 // Get attributes.
-$user     = isset( $attributes['bookwyrmUserName'] ) ? $attributes['bookwyrmUserName'] : '';
-$instance = isset( $attributes['bookwyrmInstance'] ) ? $attributes['bookwyrmInstance'] : '';
+$blocks_for_bookwyrm_user     = isset( $attributes['bookwyrmUserName'] ) ? $attributes['bookwyrmUserName'] : '';
+$blocks_for_bookwyrm_instance = isset( $attributes['bookwyrmInstance'] ) ? $attributes['bookwyrmInstance'] : '';
 
 // Validate inputs.
-if ( empty( $user ) || empty( $instance ) ) {
+if ( empty( $blocks_for_bookwyrm_user ) || empty( $blocks_for_bookwyrm_instance ) ) {
 	echo '<div ' . wp_kses_data( get_block_wrapper_attributes() ) . '>';
 	echo '<p style="font-weight: bold;">⚠️ Sorry, there has been an error fetching the feed.</p>';
 	echo '</div>';
@@ -25,16 +26,16 @@ if ( empty( $user ) || empty( $instance ) ) {
 }
 
 // Clean instance URL - remove protocol and trailing slashes.
-$instance = preg_replace( '/(http(s)?:\/\/)|(\/+$)/', '', $instance );
-$instance = preg_replace( '/\/+/', '/', $instance );
-$instance = trim( $instance, '/' );
+$blocks_for_bookwyrm_instance = preg_replace( '/(http(s)?:\/\/)|(\/+$)/', '', $blocks_for_bookwyrm_instance );
+$blocks_for_bookwyrm_instance = preg_replace( '/\/+/', '/', $blocks_for_bookwyrm_instance );
+$blocks_for_bookwyrm_instance = trim( $blocks_for_bookwyrm_instance, '/' );
 
 // Build API URL - construct manually to avoid double encoding.
-$api_url = 'https://' . $instance . '/user/' . rawurlencode( $user ) . '/shelf/reading.json?page=1';
+$blocks_for_bookwyrm_api_url = 'https://' . $blocks_for_bookwyrm_instance . '/user/' . rawurlencode( $blocks_for_bookwyrm_user ) . '/shelf/reading.json?page=1';
 
 // Make API request.
-$response = wp_remote_get(
-	$api_url,
+$blocks_for_bookwyrm_response = wp_remote_get(
+	$blocks_for_bookwyrm_api_url,
 	array(
 		'timeout'   => 15,
 		'sslverify' => true,
@@ -45,7 +46,7 @@ $response = wp_remote_get(
 );
 
 // Check for errors.
-if ( is_wp_error( $response ) ) {
+if ( is_wp_error( $blocks_for_bookwyrm_response ) ) {
 	echo '<div ' . wp_kses_data( get_block_wrapper_attributes() ) . '>';
 	echo '<p style="font-weight: bold;">⚠️ Sorry, there has been an error fetching the feed.</p>';
 	echo '</div>';
@@ -53,19 +54,19 @@ if ( is_wp_error( $response ) ) {
 }
 
 // Check HTTP response code.
-$response_code = wp_remote_retrieve_response_code( $response );
-if ( 200 !== $response_code ) {
+$blocks_for_bookwyrm_response_code = wp_remote_retrieve_response_code( $blocks_for_bookwyrm_response );
+if ( 200 !== $blocks_for_bookwyrm_response_code ) {
 	echo '<div ' . wp_kses_data( get_block_wrapper_attributes() ) . '>';
 	echo '<p style="font-weight: bold;">⚠️ Sorry, there has been an error fetching the feed.</p>';
 	echo '</div>';
 	return;
 }
 
-$body = wp_remote_retrieve_body( $response );
-$data = json_decode( $body, true );
+$blocks_for_bookwyrm_body = wp_remote_retrieve_body( $blocks_for_bookwyrm_response );
+$blocks_for_bookwyrm_data = json_decode( $blocks_for_bookwyrm_body, true );
 
 // Check if we have valid data.
-if ( ! isset( $data['orderedItems'] ) || ! is_array( $data['orderedItems'] ) ) {
+if ( ! isset( $blocks_for_bookwyrm_data['orderedItems'] ) || ! is_array( $blocks_for_bookwyrm_data['orderedItems'] ) ) {
 	echo '<div ' . wp_kses_data( get_block_wrapper_attributes() ) . '>';
 	echo '<p style="font-weight: bold;">⚠️ Sorry, there has been an error fetching the feed.</p>';
 	echo '</div>';
@@ -133,26 +134,26 @@ if ( ! function_exists( 'get_book_author_reading' ) ) {
 
 // Output the block.
 ?>
-<div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?> data-user="<?php echo esc_attr( $user ); ?>" data-instance="<?php echo esc_attr( $instance ); ?>">
+<div <?php echo wp_kses_data( get_block_wrapper_attributes() ); ?> data-user="<?php echo esc_attr( $blocks_for_bookwyrm_user ); ?>" data-instance="<?php echo esc_attr( $blocks_for_bookwyrm_instance ); ?>">
 	<div class="reading--list">
-		<?php foreach ( $data['orderedItems'] as $book ) : ?>
+		<?php foreach ( $blocks_for_bookwyrm_data['orderedItems'] as $blocks_for_bookwyrm_book ) : ?>
 			<?php
-			$isbn = isset( $book['isbn13'] ) ? $book['isbn13'] : '';
-			if ( empty( $isbn ) ) {
+			$blocks_for_bookwyrm_isbn = isset( $blocks_for_bookwyrm_book['isbn13'] ) ? $blocks_for_bookwyrm_book['isbn13'] : '';
+			if ( empty( $blocks_for_bookwyrm_isbn ) ) {
 				continue;
 			}
 
-			$book_title = isset( $book['title'] ) ? esc_html( $book['title'] ) : '';
-			$author_url = isset( $book['authors'] ) && is_array( $book['authors'] ) && ! empty( $book['authors'] ) ? $book['authors'][0] : '';
-			$author     = get_book_author_reading( $author_url );
-			$cover_url  = get_book_cover( $isbn );
+			$blocks_for_bookwyrm_book_title = isset( $blocks_for_bookwyrm_book['title'] ) ? esc_html( $blocks_for_bookwyrm_book['title'] ) : '';
+			$blocks_for_bookwyrm_author_url = isset( $blocks_for_bookwyrm_book['authors'] ) && is_array( $blocks_for_bookwyrm_book['authors'] ) && ! empty( $blocks_for_bookwyrm_book['authors'] ) ? $blocks_for_bookwyrm_book['authors'][0] : '';
+			$blocks_for_bookwyrm_author     = get_book_author_reading( $blocks_for_bookwyrm_author_url );
+			$blocks_for_bookwyrm_cover_url  = get_book_cover( $blocks_for_bookwyrm_isbn );
 			?>
-			<div class="book book-<?php echo esc_attr( $isbn ); ?>">
-				<img src="<?php echo esc_url( $cover_url ); ?>" width="150" height="225" alt="cover <?php echo esc_attr( $book_title ); ?>" loading="lazy" style="border: 1px solid #ccc; background-color: #eee;">
+			<div class="book book-<?php echo esc_attr( $blocks_for_bookwyrm_isbn ); ?>">
+				<img src="<?php echo esc_url( $blocks_for_bookwyrm_cover_url ); ?>" width="150" height="225" alt="cover <?php echo esc_attr( $blocks_for_bookwyrm_book_title ); ?>" loading="lazy" style="border: 1px solid #ccc; background-color: #eee;">
 				<p>
-					<b><cite><?php echo esc_html( $book_title ); ?></cite></b>
-					<?php if ( $author ) : ?>
-						<br><?php echo wp_kses_post( $author ); ?>
+					<b><cite><?php echo esc_html( $blocks_for_bookwyrm_book_title ); ?></cite></b>
+					<?php if ( $blocks_for_bookwyrm_author ) : ?>
+						<br><?php echo wp_kses_post( $blocks_for_bookwyrm_author ); ?>
 					<?php endif; ?>
 				</p>
 			</div>
