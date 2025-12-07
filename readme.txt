@@ -54,6 +54,7 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 = 1.0.1 - 12/07/25 =
 - Fix linting issues
 - Switch to PHP-based API calls
+- Adjust code to account for books with ISBN-10 instead of ISBN-13
 
 = 1.0.0
 - Initial release

@@ -109,7 +109,16 @@ if ( ! function_exists( 'get_book_author_read' ) ) {
 	<div class="read--list">
 		<?php foreach ( $blocks_for_bookwyrm_data['orderedItems'] as $blocks_for_bookwyrm_book ) : ?>
 			<?php
-			$blocks_for_bookwyrm_isbn = isset( $blocks_for_bookwyrm_book['isbn13'] ) ? $blocks_for_bookwyrm_book['isbn13'] : '';
+			// Try multiple ISBN formats - isbn13, isbn10, or isbn.
+			$blocks_for_bookwyrm_isbn = '';
+			if ( isset( $blocks_for_bookwyrm_book['isbn13'] ) && ! empty( $blocks_for_bookwyrm_book['isbn13'] ) ) {
+				$blocks_for_bookwyrm_isbn = $blocks_for_bookwyrm_book['isbn13'];
+			} elseif ( isset( $blocks_for_bookwyrm_book['isbn10'] ) && ! empty( $blocks_for_bookwyrm_book['isbn10'] ) ) {
+				$blocks_for_bookwyrm_isbn = $blocks_for_bookwyrm_book['isbn10'];
+			} elseif ( isset( $blocks_for_bookwyrm_book['isbn'] ) && ! empty( $blocks_for_bookwyrm_book['isbn'] ) ) {
+				$blocks_for_bookwyrm_isbn = $blocks_for_bookwyrm_book['isbn'];
+			}
+
 			if ( empty( $blocks_for_bookwyrm_isbn ) ) {
 				continue;
 			}
