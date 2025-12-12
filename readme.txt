@@ -4,7 +4,7 @@ Tags: blocks, books, bookwyrm
 Requires at least: 6.8
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable Tag: 1.0.1
+Stable Tag: 1.0.2
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 1.0.2 - 12/11/25 =
+- Code adjustments for WordPress.org
 
 = 1.0.1 - 12/07/25 =
 - Fix linting issues

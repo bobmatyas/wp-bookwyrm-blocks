@@ -7,6 +7,10 @@
  * @package Bookwyrm_Blocks
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 // Ensure attributes is set.
 // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- $attributes is provided by WordPress Gutenberg.
 if ( ! isset( $attributes ) || ! is_array( $attributes ) ) {
