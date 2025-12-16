@@ -4,7 +4,7 @@ Tags: blocks, books, bookwyrm
 Requires at least: 6.8
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable Tag: 1.0.2
+Stable Tag: 1.0.3
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,11 +17,11 @@ This plugin adds two blocks to pull data from BookWyrm and to display it on your
 - Recently Read books
 - Currently Reading books
 
-=== External Sources ===
+=== External Services ===
 
 This plugin makes API calls to the user-configued [BookWyrm](https://joinbookwyrm.com/) instance. It sends the user-configured username to:
 
-- Retrieve a list of recently read or currently reading books
+- Retrieve a list of recently read or currently reading books (including author name, book title, and book ISBN).
 
 It relies on public endpoints and only displays already public information. 
 

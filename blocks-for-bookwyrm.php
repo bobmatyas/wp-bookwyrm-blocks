@@ -5,7 +5,7 @@
  * Requires at least: 6.8
  * Tested up to:      6.9
  * Requires PHP:      8.2
- * Version:           1.0.2
+ * Version:           1.0.3
  * Author URI:        https://www.bobmatyas.com
  * Author:            Bob Matyas
  * License:           GPL-2.0-or-later
