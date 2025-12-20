@@ -4,7 +4,7 @@ Tags: blocks, books, bookwyrm
 Requires at least: 6.8
 Tested up to: 6.9
 Requires PHP: 8.2
-Stable Tag: 1.0.4
+Stable Tag: 1.0.5
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -51,8 +51,14 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 
 == Changelog ==
 
+= 1.0.5 - 12/20/25 =
+- Add default placeholders when no cover image found
+- Add blueprint for WordPress.org
+- Update plugin icon
+
 = 1.0.4 - 12/18/25 =
 - Deploy to WordPress.org
+
 = 1.0.2 - 12/11/25 =
 - Code adjustments for WordPress.org
 

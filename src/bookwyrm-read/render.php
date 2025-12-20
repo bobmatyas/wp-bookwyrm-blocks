@@ -77,15 +77,34 @@ if ( ! isset( $blocks_for_bookwyrm_data['orderedItems'] ) || ! is_array( $blocks
 	return;
 }
 
+// Helper function to get default cover URL.
+if ( ! function_exists( 'get_default_book_cover' ) ) {
+	/**
+	 * Get default book cover placeholder URL.
+	 *
+	 * @param string $type The placeholder type: 'svg' or 'png'. Default 'svg'.
+	 * @return string The default cover URL.
+	 */
+	function get_default_book_cover( $type = 'svg' ) {
+		$plugin_dir = dirname( dirname( __DIR__ ) );
+		$filename   = 'svg' === $type ? 'default-book-cover.svg' : 'default-book-cover.png';
+		return plugins_url( 'assets/images/' . $filename, $plugin_dir . '/blocks-for-bookwyrm.php' );
+	}
+}
+
 // Helper function to get book cover.
 if ( ! function_exists( 'get_book_cover' ) ) {
 	/**
 	 * Get book cover URL from ISBN.
 	 *
 	 * @param string $isbn The ISBN of the book.
+	 * @param string $default Optional default cover URL. If not provided, uses plugin default.
 	 * @return string The cover URL.
 	 */
-	function get_book_cover( $isbn ) {
+	function get_book_cover( $isbn, $default = null ) {
+		if ( empty( $isbn ) ) {
+			return $default ? $default : get_default_book_cover();
+		}
 		return 'https://covers.openlibrary.org/b/isbn/' . esc_attr( $isbn ) . '-L.jpg';
 	}
 }
@@ -123,19 +142,18 @@ if ( ! function_exists( 'get_book_author_read' ) ) {
 				$blocks_for_bookwyrm_isbn = $blocks_for_bookwyrm_book['isbn'];
 			}
 
-			if ( empty( $blocks_for_bookwyrm_isbn ) ) {
-				continue;
-			}
-
 			$blocks_for_bookwyrm_has_cover  = isset( $blocks_for_bookwyrm_book['cover'] ) && isset( $blocks_for_bookwyrm_book['cover']['name'] );
 			$blocks_for_bookwyrm_cover_alt  = $blocks_for_bookwyrm_has_cover ? esc_attr( $blocks_for_bookwyrm_book['cover']['name'] ) : '';
 			$blocks_for_bookwyrm_cover_name = $blocks_for_bookwyrm_has_cover ? $blocks_for_bookwyrm_book['cover']['name'] : '';
 			$blocks_for_bookwyrm_book_title = isset( $blocks_for_bookwyrm_book['title'] ) ? esc_html( $blocks_for_bookwyrm_book['title'] ) : '';
 			$blocks_for_bookwyrm_author     = get_book_author_read( $blocks_for_bookwyrm_cover_name );
-			$blocks_for_bookwyrm_cover_url  = get_book_cover( $blocks_for_bookwyrm_isbn );
+			$blocks_for_bookwyrm_placeholder_type = isset( $attributes['placeholderType'] ) ? $attributes['placeholderType'] : 'svg';
+			$blocks_for_bookwyrm_default_cover = get_default_book_cover( $blocks_for_bookwyrm_placeholder_type );
+			$blocks_for_bookwyrm_cover_url  = get_book_cover( $blocks_for_bookwyrm_isbn, $blocks_for_bookwyrm_default_cover );
+			$blocks_for_bookwyrm_book_id    = ! empty( $blocks_for_bookwyrm_isbn ) ? esc_attr( $blocks_for_bookwyrm_isbn ) : 'no-isbn-' . uniqid();
 			?>
-			<div class="book book-<?php echo esc_attr( $blocks_for_bookwyrm_isbn ); ?>">
-				<img src="<?php echo esc_url( $blocks_for_bookwyrm_cover_url ); ?>" width="150" height="225" alt="<?php echo esc_attr( $blocks_for_bookwyrm_cover_alt ); ?>" loading="lazy" class="bookwyrm-book-cover">
+			<div class="book book-<?php echo esc_attr( $blocks_for_bookwyrm_book_id ); ?>">
+				<img src="<?php echo esc_url( $blocks_for_bookwyrm_cover_url ); ?>" width="150" height="225" alt="<?php echo esc_attr( $blocks_for_bookwyrm_cover_alt ? $blocks_for_bookwyrm_cover_alt : $blocks_for_bookwyrm_book_title ); ?>" loading="lazy" class="bookwyrm-book-cover" data-default-cover="<?php echo esc_attr( $blocks_for_bookwyrm_default_cover ); ?>" onload="if(this.naturalWidth === 1 && this.naturalHeight === 1) { this.src = this.dataset.defaultCover; }" onerror="this.onerror=null; this.src='<?php echo esc_js( $blocks_for_bookwyrm_default_cover ); ?>';">
 				<p class="bookwyrm-book-title">
 					<cite><?php echo esc_html( $blocks_for_bookwyrm_book_title ); ?></cite>
 					<?php if ( $blocks_for_bookwyrm_author ) : ?>
