@@ -1,6 +1,7 @@
 <?php
 /**
  * Plugin Name:       Blocks for BookWyrm
+ * Plugin URI:        https://bobmatyas.com/projects/blocks-for-bookwyrm/
  * Description:       Add blocks for pulling currently reading and recently read books from BookWyrm instances.
  * Requires at least: 6.8
  * Tested up to:      6.9
