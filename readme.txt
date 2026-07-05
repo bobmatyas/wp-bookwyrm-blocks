@@ -1,10 +1,10 @@
 === Blocks for BookWyrm ===
 Contributors: lastsplash
 Tags: blocks, books, bookwyrm
-Requires at least: 6.8
-Tested up to: 6.9
+Requires at least: 6.9
+Tested up to: 7.0
 Requires PHP: 8.2
-Stable Tag: 1.0.5
+Stable Tag: 1.0.6
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -50,6 +50,9 @@ directory take precedence. For example, `/assets/screenshot-1.png` would win ove
 2. This is the second screen shot
 
 == Changelog ==
+
+= 1.0.6 - 07/04/26 =
+- New: Indicate WordPress v7.0 compatibility
 
 = 1.0.5 - 12/20/25 =
 - Add default placeholders when no cover image found
