@@ -11,15 +11,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-// Ensure attributes is set.
-// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound -- $attributes is provided by WordPress Gutenberg.
-if ( ! isset( $attributes ) || ! is_array( $attributes ) ) {
-	$attributes = array();
-}
+// Block render templates receive $attributes from WordPress.
+// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
+$blocks_for_bookwyrm_attributes = ( isset( $attributes ) && is_array( $attributes ) ) ? $attributes : array();
 
 // Get attributes.
-$blocks_for_bookwyrm_user     = isset( $attributes['bookwyrmUserName'] ) ? $attributes['bookwyrmUserName'] : '';
-$blocks_for_bookwyrm_instance = isset( $attributes['bookwyrmInstance'] ) ? $attributes['bookwyrmInstance'] : '';
+$blocks_for_bookwyrm_user     = isset( $blocks_for_bookwyrm_attributes['bookwyrmUserName'] ) ? $blocks_for_bookwyrm_attributes['bookwyrmUserName'] : '';
+$blocks_for_bookwyrm_instance = isset( $blocks_for_bookwyrm_attributes['bookwyrmInstance'] ) ? $blocks_for_bookwyrm_attributes['bookwyrmInstance'] : '';
 
 // Validate inputs.
 if ( empty( $blocks_for_bookwyrm_user ) || empty( $blocks_for_bookwyrm_instance ) ) {
@@ -78,14 +76,14 @@ if ( ! isset( $blocks_for_bookwyrm_data['orderedItems'] ) || ! is_array( $blocks
 }
 
 // Helper function to get default cover URL.
-if ( ! function_exists( 'get_default_book_cover' ) ) {
+if ( ! function_exists( 'blocks_for_bookwyrm_get_default_book_cover' ) ) {
 	/**
 	 * Get default book cover placeholder URL.
 	 *
 	 * @param string $type The placeholder type: 'svg' or 'png'. Default 'svg'.
 	 * @return string The default cover URL.
 	 */
-	function get_default_book_cover( $type = 'svg' ) {
+	function blocks_for_bookwyrm_get_default_book_cover( $type = 'svg' ) {
 		$plugin_dir = dirname( dirname( __DIR__ ) );
 		$filename   = 'svg' === $type ? 'default-book-cover.svg' : 'default-book-cover.png';
 		return plugins_url( 'assets/images/' . $filename, $plugin_dir . '/blocks-for-bookwyrm.php' );
@@ -93,7 +91,7 @@ if ( ! function_exists( 'get_default_book_cover' ) ) {
 }
 
 // Helper function to get book cover.
-if ( ! function_exists( 'get_book_cover' ) ) {
+if ( ! function_exists( 'blocks_for_bookwyrm_get_book_cover' ) ) {
 	/**
 	 * Get book cover URL from ISBN.
 	 *
@@ -101,23 +99,23 @@ if ( ! function_exists( 'get_book_cover' ) ) {
 	 * @param string $default Optional default cover URL. If not provided, uses plugin default.
 	 * @return string The cover URL.
 	 */
-	function get_book_cover( $isbn, $default = null ) {
+	function blocks_for_bookwyrm_get_book_cover( $isbn, $default = null ) {
 		if ( empty( $isbn ) ) {
-			return $default ? $default : get_default_book_cover();
+			return $default ? $default : blocks_for_bookwyrm_get_default_book_cover();
 		}
 		return 'https://covers.openlibrary.org/b/isbn/' . esc_attr( $isbn ) . '-L.jpg';
 	}
 }
 
 // Helper function to get author from cover name.
-if ( ! function_exists( 'get_book_author_read' ) ) {
+if ( ! function_exists( 'blocks_for_bookwyrm_get_book_author_read' ) ) {
 	/**
 	 * Get author name from cover name.
 	 *
 	 * @param string $cover_name The cover name string.
 	 * @return string The author name with "by " prefix.
 	 */
-	function get_book_author_read( $cover_name ) {
+	function blocks_for_bookwyrm_get_book_author_read( $cover_name ) {
 		if ( empty( $cover_name ) ) {
 			return '';
 		}
@@ -146,10 +144,10 @@ if ( ! function_exists( 'get_book_author_read' ) ) {
 			$blocks_for_bookwyrm_cover_alt  = $blocks_for_bookwyrm_has_cover ? esc_attr( $blocks_for_bookwyrm_book['cover']['name'] ) : '';
 			$blocks_for_bookwyrm_cover_name = $blocks_for_bookwyrm_has_cover ? $blocks_for_bookwyrm_book['cover']['name'] : '';
 			$blocks_for_bookwyrm_book_title = isset( $blocks_for_bookwyrm_book['title'] ) ? esc_html( $blocks_for_bookwyrm_book['title'] ) : '';
-			$blocks_for_bookwyrm_author     = get_book_author_read( $blocks_for_bookwyrm_cover_name );
-			$blocks_for_bookwyrm_placeholder_type = isset( $attributes['placeholderType'] ) ? $attributes['placeholderType'] : 'svg';
-			$blocks_for_bookwyrm_default_cover = get_default_book_cover( $blocks_for_bookwyrm_placeholder_type );
-			$blocks_for_bookwyrm_cover_url  = get_book_cover( $blocks_for_bookwyrm_isbn, $blocks_for_bookwyrm_default_cover );
+			$blocks_for_bookwyrm_author     = blocks_for_bookwyrm_get_book_author_read( $blocks_for_bookwyrm_cover_name );
+			$blocks_for_bookwyrm_placeholder_type = isset( $blocks_for_bookwyrm_attributes['placeholderType'] ) ? $blocks_for_bookwyrm_attributes['placeholderType'] : 'svg';
+			$blocks_for_bookwyrm_default_cover = blocks_for_bookwyrm_get_default_book_cover( $blocks_for_bookwyrm_placeholder_type );
+			$blocks_for_bookwyrm_cover_url  = blocks_for_bookwyrm_get_book_cover( $blocks_for_bookwyrm_isbn, $blocks_for_bookwyrm_default_cover );
 			$blocks_for_bookwyrm_book_id    = ! empty( $blocks_for_bookwyrm_isbn ) ? esc_attr( $blocks_for_bookwyrm_isbn ) : 'no-isbn-' . uniqid();
 			?>
 			<div class="book book-<?php echo esc_attr( $blocks_for_bookwyrm_book_id ); ?>">
